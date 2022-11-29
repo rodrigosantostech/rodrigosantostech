@@ -28,7 +28,9 @@
 ###
 
 <div align="center">
-![Alt text](https://spotify-recently-played-readme.vercel.app/api?user=rodrigosilva34)
+  <a href="https://open.spotify.com/user/Rodrigo Santos">
+    <img src="https://spotify-recently-played-readme.vercel.app/api?user=rodrigosilva34" alt="Spotify recently played"  />
+  </a>
 </div>
 
 ###
