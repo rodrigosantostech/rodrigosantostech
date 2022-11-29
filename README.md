@@ -22,12 +22,6 @@
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="30" width="42" alt="react logo"  />
 </div>
 
-###
-
-<img align="right" height="150" src="https://ibb.co/mtZvwLr"  />
-
-###
-
 <div align="left">
   <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="instagram logo"  />
   <a href="https://www.linkedin.com/in/rodrigosilvacs/" target="_blank">
@@ -37,7 +31,7 @@
 
 ###
 
-<div align="left">
+<div align="center">
   <a href="https://open.spotify.com/user/Rodrigo Santos">
     <img src="https://spotify-recently-played-readme.vercel.app/api?user=rodrigosilva34" alt="Spotify recently played"  />
   </a>
