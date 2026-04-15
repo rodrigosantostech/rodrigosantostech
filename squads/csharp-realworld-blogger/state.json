@@ -1,7 +1,7 @@
 {
   "squad": "csharp-realworld-blogger",
   "status": "idle",
-  "step": { "current": 7, "total": 8, "label": "Run completed" },
+  "step": { "current": 8, "total": 8, "label": "Run completed" },
   "agents": [
     {
       "id": "researcher",
@@ -54,6 +54,6 @@
     }
   ],
   "handoff": null,
-  "startedAt": "2026-04-15T16:58:37Z",
-  "updatedAt": "2026-04-15T17:02:47Z"
+  "startedAt": "2026-04-15T17:34:09Z",
+  "updatedAt": "2026-04-15T17:41:10Z"
 }

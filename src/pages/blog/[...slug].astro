@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
+import SiteLayout from "../../components/SiteLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -16,129 +17,88 @@ const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith("/") ? base : `${base}/`;
 ---
 
-<html lang="pt-BR">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>{post.data.title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #07101d;
-        --bg-soft: #0d1b2f;
-        --line: rgba(116, 160, 224, 0.34);
-        --ink: #ecf4ff;
-        --muted: #a4bada;
-        --accent: #36d2ff;
-        --accent-2: #ff9f4a;
-      }
+<SiteLayout title={post.data.title} current="posts">
+  <style>
+    .article-shell {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.8rem;
+      background: linear-gradient(155deg, rgba(12, 29, 49, 0.96), rgba(6, 16, 29, 0.92));
+      box-shadow: 0 24px 48px var(--shadow);
+    }
 
-      * { box-sizing: border-box; }
+    h1 {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(2rem, 5vw, 3.1rem);
+      line-height: 1.05;
+      margin: 0;
+    }
 
-      body {
-        margin: 0;
-        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
-        color: var(--ink);
-        background:
-          radial-gradient(circle at 16% 14%, rgba(54, 210, 255, 0.23) 0%, transparent 32%),
-          radial-gradient(circle at 86% 8%, rgba(255, 159, 74, 0.16) 0%, transparent 28%),
-          linear-gradient(120deg, rgba(9, 28, 48, 0.96) 0%, rgba(4, 11, 19, 1) 55%, rgba(7, 16, 29, 1) 100%),
-          var(--bg);
-        min-height: 100vh;
-      }
+    .meta {
+      color: var(--muted);
+      margin: 0.9rem 0 1.6rem;
+      line-height: 1.6;
+    }
 
-      article {
-        width: min(820px, 92vw);
-        margin: 0 auto;
-        padding: 2.8rem 0 4rem;
-      }
+    .meta strong {
+      color: var(--accent-2);
+      font-family: "Syne", sans-serif;
+    }
 
+    :global(.prose h2) {
+      font-family: "Syne", sans-serif;
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      margin: 2.2rem 0 0.6rem;
+      line-height: 1.2;
+    }
+
+    :global(.prose p),
+    :global(.prose li) {
+      color: #d8e6f8;
+      line-height: 1.78;
+      font-size: 1.03rem;
+    }
+
+    :global(.prose ul) {
+      padding-left: 1.2rem;
+    }
+
+    :global(.prose a) {
+      color: var(--accent);
+    }
+
+    .back {
+      display: inline-flex;
+      margin-top: 1.8rem;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 0.55rem 0.9rem;
+      color: #f6fbff;
+      transition: transform 150ms ease, border-color 150ms ease, color 150ms ease;
+    }
+
+    .back:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 640px) {
       .article-shell {
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        padding: 1.8rem;
-        background: linear-gradient(155deg, rgba(12, 29, 49, 0.96), rgba(6, 16, 29, 0.92));
+        padding: 1.2rem;
       }
+    }
+  </style>
 
-      h1 {
-        font-family: "Chakra Petch", sans-serif;
-        font-size: clamp(2rem, 5vw, 3rem);
-        line-height: 1.05;
-        margin: 0;
-      }
-
-      .meta {
-        color: var(--muted);
-        margin: 0.9rem 0 1.6rem;
-      }
-
-      .meta strong {
-        color: var(--accent-2);
-        font-family: "Chakra Petch", sans-serif;
-      }
-
-      :global(.prose h2) {
-        font-family: "Chakra Petch", sans-serif;
-        font-size: clamp(1.4rem, 3vw, 1.8rem);
-        margin: 2.2rem 0 0.6rem;
-        line-height: 1.2;
-      }
-
-      :global(.prose p), :global(.prose li) {
-        color: #d8e6f8;
-        line-height: 1.78;
-        font-size: 1.03rem;
-      }
-
-      :global(.prose ul) {
-        padding-left: 1.2rem;
-      }
-
-      a {
-        color: var(--accent);
-      }
-
-      .back {
-        display: inline-flex;
-        margin-top: 1.8rem;
-        text-decoration: none;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.55rem 0.9rem;
-        color: #f6fbff;
-        transition: transform 150ms ease, border-color 150ms ease, color 150ms ease;
-      }
-
-      .back:hover {
-        color: var(--accent);
-        border-color: var(--accent);
-        transform: translateY(-2px);
-      }
-
-      @media (max-width: 640px) {
-        .article-shell {
-          padding: 1.2rem;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <article>
-      <div class="article-shell">
-        <h1>{post.data.title}</h1>
-        <p class="meta">
-          <strong>{post.data.pubDate.toLocaleDateString("pt-BR")}</strong> • {post.data.description}
-        </p>
-        <div class="prose">
-          <Content />
-        </div>
-        <a class="back" href={basePath}>Voltar para a home</a>
-      </div>
-    </article>
-  </body>
-</html>
+  <article class="article-shell">
+    <h1>{post.data.title}</h1>
+    <p class="meta">
+      <strong>{post.data.pubDate.toLocaleDateString("pt-BR")}</strong> - {post.data.description}
+    </p>
+    <div class="prose">
+      <Content />
+    </div>
+    <a class="back" href={basePath}>Voltar para a home</a>
+  </article>
+</SiteLayout>
