@@ -1,5 +1,6 @@
 ---
 const base = import.meta.env.BASE_URL;
+const basePath = base.endsWith("/") ? base : `${base}/`;
 ---
 
 <html lang="pt-BR">
@@ -7,17 +8,78 @@ const base = import.meta.env.BASE_URL;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>About | Rodrigo Santos Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #07101d;
+        --line: rgba(116, 160, 224, 0.34);
+        --ink: #ecf4ff;
+        --muted: #a4bada;
+        --accent: #36d2ff;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 10% 8%, rgba(54, 210, 255, 0.18) 0%, transparent 32%),
+          linear-gradient(120deg, rgba(9, 28, 48, 0.96) 0%, rgba(4, 11, 19, 1) 55%, rgba(7, 16, 29, 1) 100%),
+          var(--bg);
+      }
+
+      main {
+        width: min(760px, 92vw);
+        margin: 0 auto;
+        padding: 2.8rem 0 4rem;
+      }
+
+      .shell {
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        background: rgba(10, 24, 42, 0.86);
+        padding: 1.8rem;
+      }
+
+      h1 {
+        font-family: "Chakra Petch", sans-serif;
+        margin: 0;
+        font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+      }
+
+      p {
+        color: #d8e6f8;
+        line-height: 1.75;
+      }
+
+      .home {
+        display: inline-flex;
+        margin-top: 1rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
     <main>
-      <h1>About</h1>
-      <p>
-        Sou engenheiro de software focado em confiabilidade, arquitetura orientada a domínio e DX.
-      </p>
-      <p>
-        Este espaço documenta decisões que funcionaram, falhas que ensinaram caro e trade-offs reais de produção.
-      </p>
-      <a href={base}>Voltar para início</a>
+      <section class="shell">
+        <h1>About</h1>
+        <p>
+          Sou engenheiro de software focado em confiabilidade, arquitetura orientada a domínio e experiência de desenvolvimento.
+        </p>
+        <p>
+          Este espaço documenta decisões que funcionaram, falhas que ensinaram caro e trade-offs reais de produção.
+        </p>
+        <a class="home" href={basePath}>Voltar para início</a>
+      </section>
     </main>
   </body>
 </html>
