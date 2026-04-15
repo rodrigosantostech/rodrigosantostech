@@ -1,0 +1,50 @@
+---
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const base = import.meta.env.BASE_URL;
+---
+
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{post.data.title}</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Georgia", "Times New Roman", serif;
+        color: #1f2933;
+        background: #f8fafc;
+      }
+
+      article {
+        width: min(760px, 92vw);
+        margin: 0 auto;
+        padding: 3rem 0 4rem;
+      }
+
+      h1, h2 { line-height: 1.2; }
+      p, li { line-height: 1.75; }
+      .meta { color: #5b6773; margin-bottom: 2rem; }
+      a { color: #0055cc; }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h1>{post.data.title}</h1>
+      <p class="meta">{post.data.description}</p>
+      <Content />
+      <p><a href={base}>Voltar para a home</a></p>
+    </article>
+  </body>
+</html>
