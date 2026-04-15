@@ -11,16 +11,19 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #07101d;
-        --line: rgba(116, 160, 224, 0.34);
-        --ink: #ecf4ff;
-        --muted: #a4bada;
-        --accent: #36d2ff;
+        --bg: #061116;
+        --panel: rgba(10, 23, 31, 0.78);
+        --line: rgba(105, 161, 190, 0.35);
+        --ink: #eef6f9;
+        --muted: #9db4bf;
+        --accent: #39d4c8;
+        --accent-strong: #ff965d;
+        --glow: rgba(57, 212, 200, 0.35);
       }
 
       * { box-sizing: border-box; }
@@ -30,92 +33,229 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
         color: var(--ink);
         background:
-          radial-gradient(circle at 10% 8%, rgba(54, 210, 255, 0.18) 0%, transparent 32%),
-          linear-gradient(120deg, rgba(9, 28, 48, 0.96) 0%, rgba(4, 11, 19, 1) 55%, rgba(7, 16, 29, 1) 100%),
+          radial-gradient(circle at 8% 5%, rgba(57, 212, 200, 0.23) 0%, transparent 30%),
+          radial-gradient(circle at 88% 18%, rgba(255, 150, 93, 0.18) 0%, transparent 26%),
+          linear-gradient(135deg, rgba(5, 18, 26, 0.98) 0%, rgba(3, 10, 15, 1) 56%, rgba(6, 17, 22, 1) 100%),
           var(--bg);
+        min-height: 100vh;
       }
 
       main {
-        width: min(760px, 92vw);
+        width: min(980px, 92vw);
         margin: 0 auto;
-        padding: 2.8rem 0 4rem;
+        padding: 2.6rem 0 4.2rem;
       }
 
       .shell {
         border: 1px solid var(--line);
-        border-radius: 20px;
-        background: rgba(10, 24, 42, 0.86);
-        padding: 1.8rem;
+        border-radius: 24px;
+        background: var(--panel);
+        backdrop-filter: blur(4px);
+        overflow: hidden;
+        box-shadow: 0 20px 48px rgba(3, 12, 18, 0.55);
       }
 
-      .profile {
+      .hero {
+        position: relative;
+        border-bottom: 1px solid var(--line);
+        padding: 2.1rem 1.8rem 1.6rem;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        right: -56px;
+        top: -72px;
+        background: radial-gradient(circle, var(--glow) 0%, transparent 72%);
+        pointer-events: none;
+      }
+
+      .stamp {
+        display: inline-flex;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 0.95rem;
+        letter-spacing: 0.14em;
+        color: var(--accent);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.24rem 0.65rem;
+      }
+
+      .hero-grid {
         display: grid;
         grid-template-columns: 170px 1fr;
-        gap: 1.2rem;
+        gap: 1.25rem;
         align-items: center;
-        margin: 1rem 0 1.2rem;
+        margin-top: 1.05rem;
       }
 
       .avatar {
         width: 170px;
         aspect-ratio: 1 / 1;
-        border-radius: 18px;
-        border: 1px solid var(--line);
+        border-radius: 22px;
+        border: 1px solid rgba(238, 246, 249, 0.24);
         object-fit: cover;
-        box-shadow: 0 12px 26px rgba(4, 13, 25, 0.45);
+        box-shadow: 0 16px 36px rgba(2, 8, 12, 0.5);
       }
 
-      .profile-text {
-        color: #d8e6f8;
-      }
-
-      .label {
+      .kicker {
         margin: 0;
         color: var(--muted);
         text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        font-size: 0.74rem;
       }
 
-      .name {
-        margin: 0.25rem 0 0.65rem;
-        font-family: "Chakra Petch", sans-serif;
-        font-size: clamp(1.25rem, 3vw, 1.7rem);
+      h1 {
+        margin: 0;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.1rem, 8vw, 4.2rem);
+        letter-spacing: 0.04em;
+        line-height: 1;
+      }
+
+      .headline {
+        margin: 0.4rem 0 0;
+        max-width: 62ch;
+        font-family: "Source Serif 4", serif;
+        color: #d9e9ee;
+        line-height: 1.7;
+        font-size: clamp(1rem, 1.8vw, 1.18rem);
       }
 
       .linkedin {
         display: inline-flex;
         align-items: center;
-        gap: 0.45rem;
+        gap: 0.5rem;
         color: var(--accent);
         text-decoration: none;
-        font-weight: 600;
+        font-weight: 700;
+        margin-top: 0.9rem;
       }
 
-      h1 {
-        font-family: "Chakra Petch", sans-serif;
-        margin: 0;
-        font-size: clamp(1.9rem, 4.5vw, 2.8rem);
+      .content {
+        padding: 1.65rem 1.8rem 2rem;
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(6, 20, 28, 0.68);
+        padding: 1rem 1.05rem;
+      }
+
+      h2 {
+        margin: 0 0 0.5rem;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.35rem;
+        letter-spacing: 0.08em;
       }
 
       p {
-        color: #d8e6f8;
-        line-height: 1.75;
+        margin: 0.38rem 0;
+        color: #d4e7ee;
+        line-height: 1.74;
       }
 
-      .home {
+      ul {
+        margin: 0;
+        padding-left: 1.05rem;
+      }
+
+      li {
+        margin: 0.42rem 0;
+        color: #d4e7ee;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.95rem;
+      }
+
+      .stack {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.95rem;
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .chip {
+        border: 1px solid rgba(157, 180, 191, 0.38);
+        border-radius: 999px;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.82rem;
+        color: #e7f4f8;
+      }
+
+      .quote {
+        border-left: 3px solid var(--accent-strong);
+        padding-left: 0.75rem;
+        margin-top: 0.3rem;
+        font-family: "Source Serif 4", serif;
+        font-style: italic;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.2rem;
+      }
+
+      .btn {
         display: inline-flex;
-        margin-top: 1rem;
-        color: var(--accent);
-        text-decoration: none;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.55rem 0.95rem;
         font-weight: 600;
+        text-decoration: none;
+      }
+
+      .btn-primary {
+        color: #052329;
+        background: linear-gradient(120deg, #65efe4 0%, #39d4c8 100%);
+        border-color: rgba(101, 239, 228, 0.7);
+      }
+
+      .btn-ghost {
+        color: var(--accent);
+        background: rgba(57, 212, 200, 0.08);
+      }
+
+      .contact {
+        display: grid;
+        gap: 0.35rem;
       }
 
       @media (max-width: 700px) {
-        .profile {
+        .hero-grid,
+        .grid-2,
+        .stack {
           grid-template-columns: 1fr;
-          justify-items: center;
-          text-align: center;
+        }
+
+        .hero {
+          padding: 1.45rem 1.2rem 1.35rem;
+        }
+
+        .content {
+          padding: 1.2rem;
+        }
+
+        .avatar {
+          width: min(170px, 55vw);
         }
       }
     </style>
@@ -123,35 +263,132 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
   <body>
     <main>
       <section class="shell">
-        <h1>About</h1>
-        <div class="profile">
-          <img
-            class="avatar"
-            src={`${basePath}profile-rodrigo.jpg`}
-            alt="Foto de Rodrigo Santos"
-            loading="eager"
-            decoding="async"
-          />
-          <div class="profile-text">
-            <p class="label">Perfil</p>
-            <p class="name">Rodrigo Silva Santos</p>
-            <a
-              class="linkedin"
-              href="https://www.linkedin.com/in/rodrigosilvacs/"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
-              LinkedIn / rodrigosilvacs
-            </a>
+        <header class="hero">
+          <span class="stamp">SENIOR SOFTWARE ENGINEER</span>
+          <div class="hero-grid">
+            <img
+              class="avatar"
+              src={`${basePath}fotoperfil.jpeg`}
+              alt="Foto de Rodrigo Santos"
+              loading="eager"
+              decoding="async"
+            />
+            <div>
+              <p class="kicker">Rodrigo Silva Santos</p>
+              <h1>Arquitetura para sistemas que precisam continuar vivos sob pressão</h1>
+              <p class="headline">
+                Engenheiro de software focado em sistemas distribuídos, alta disponibilidade e decisões técnicas orientadas a impacto real em produção.
+              </p>
+              <a
+                class="linkedin"
+                href="https://www.linkedin.com/in/rodrigosilvacs/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                LinkedIn / rodrigosilvacs
+              </a>
+            </div>
           </div>
+        </header>
+
+        <div class="content">
+          <article class="card">
+            <h2>Sobre</h2>
+            <p>
+              Atuo em ambientes de fintech, pagamentos e instituições financeiras com sistemas críticos de alta escala.
+            </p>
+            <p>
+              Minha contribuição vai além de implementação: envolve decisão arquitetural, redução de incidentes, aumento de confiabilidade e evolução de padrões técnicos nos times.
+            </p>
+            <p class="quote">Sistemas não falham por acaso. Eles falham por decisões, muitas vezes invisíveis.</p>
+          </article>
+
+          <section class="grid-2">
+            <article class="card">
+              <h2>Áreas de atuação</h2>
+              <ul>
+                <li>Arquitetura de software e sistemas distribuídos</li>
+                <li>APIs de alta performance e resiliência</li>
+                <li>Observabilidade: logs, métricas e tracing</li>
+                <li>Engenharia de sustentação e melhoria contínua</li>
+                <li>DDD e testes automatizados com foco em confiabilidade</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h2>Experiência prática</h2>
+              <ul>
+                <li>Sistemas com milhões de requisições diárias e SLAs rigorosos</li>
+                <li>Redução de latência de segundos para milissegundos</li>
+                <li>Atuação em incidentes críticos com redução de MTTR</li>
+                <li>Evolução de legados, microserviços e arquiteturas orientadas a eventos</li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="stack">
+            <article class="card">
+              <h2>Stack principal</h2>
+              <div class="chips">
+                <span class="chip">C# / .NET 8</span>
+                <span class="chip">ASP.NET Core</span>
+                <span class="chip">Entity Framework</span>
+                <span class="chip">Dapper</span>
+                <span class="chip">PostgreSQL</span>
+                <span class="chip">SQL Server</span>
+                <span class="chip">Redis</span>
+              </div>
+            </article>
+
+            <article class="card">
+              <h2>Infra e observabilidade</h2>
+              <div class="chips">
+                <span class="chip">AWS (SQS, S3, Lambda, ECS)</span>
+                <span class="chip">Docker</span>
+                <span class="chip">Kubernetes</span>
+                <span class="chip">OpenTelemetry</span>
+                <span class="chip">Prometheus</span>
+                <span class="chip">Grafana</span>
+                <span class="chip">Datadog</span>
+              </div>
+            </article>
+          </section>
+
+          <article class="card">
+            <h2>Filosofia de engenharia</h2>
+            <ul>
+              <li>Performance sem resiliência é ilusão</li>
+              <li>Métricas sem contexto enganam</li>
+              <li>Sistemas quebram nas integrações, não no core</li>
+              <li>Retries mal projetados derrubam ecossistemas</li>
+              <li>Simplicidade vence complexidade prematura</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h2>Sobre este blog</h2>
+            <p>
+              Este espaço não foi criado para tutoriais básicos. Aqui você encontra decisões arquiteturais reais, falhas de produção, trade-offs e aprendizados que só aparecem fora do ambiente ideal.
+            </p>
+          </article>
+
+          <article class="card contact">
+            <h2>Contato</h2>
+            <p>LinkedIn: https://linkedin.com/in/rodrigosilvacs</p>
+            <p>Email: rodrigosilva34@hotmail.com</p>
+            <div class="actions">
+              <a class="btn btn-primary" href={basePath}>Voltar para inicio</a>
+              <a
+                class="btn btn-ghost"
+                href="https://www.linkedin.com/in/rodrigosilvacs/"
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                Conectar no LinkedIn
+              </a>
+            </div>
+          </article>
         </div>
-        <p>
-          Sou engenheiro de software focado em confiabilidade, arquitetura orientada a domínio e experiência de desenvolvimento.
-        </p>
-        <p>
-          Este espaço documenta decisões que funcionaram, falhas que ensinaram caro e trade-offs reais de produção.
-        </p>
-        <a class="home" href={basePath}>Voltar para início</a>
       </section>
     </main>
   </body>
