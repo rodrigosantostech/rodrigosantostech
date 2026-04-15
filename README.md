@@ -1,87 +1,161 @@
-# Rodrigo Santos Tech - Blog Astro
+# Rodrigo Santos - Software Engineer
 
-Blog tecnico em Astro + Markdown com deploy no GitHub Pages, focado em engenharia de software em producao.
+> Engenheiro de Software focado em sistemas distribuidos, alta disponibilidade e decisoes arquiteturais orientadas a impacto real em producao.
 
-## Proposito
+---
 
-Construir um espaco de publicacao com posicionamento de engenharia senior/Staff, abordando arquitetura, confiabilidade e trade-offs reais.
+## Sobre mim
 
-## Stack
+Atuo como Engenheiro de Software Senior com experiencia em sistemas criticos de alta escala, principalmente em contextos de **fintech, pagamentos e grandes instituicoes financeiras**.
 
-- Astro
-- Markdown (colecao de conteudo)
-- GitHub Actions + GitHub Pages
+Minha atuacao vai alem de implementacao:
 
-## Estrutura principal
+- Tomada de decisoes arquiteturais
+- Melhoria continua de sistemas em producao
+- Reducao de incidentes e aumento de confiabilidade
+- Evolucao de padroes tecnicos dentro dos times
 
-- `src/content/blog/`: artigos em Markdown.
-- `src/pages/`: paginas institucionais e rotas do site.
-- `.github/workflows/deploy.yml`: pipeline de build e deploy.
-- `production-failure-not-about-performance/`: repositorio complementar do primeiro artigo.
+Trabalho com uma visao clara:
 
-## Como rodar localmente
+> Sistemas nao falham por acaso. Eles falham por decisoes, muitas vezes invisiveis.
 
-Pre-requisito: Node.js 20+.
+---
 
-```bash
-npm install
-npm run dev
-```
+## Principais areas de atuacao
 
-Build de producao:
+- Arquitetura de Software
+- Sistemas Distribuidos
+- APIs de Alta Performance
+- Resiliencia e Tolerancia a Falhas
+- Observabilidade (logs, metricas, tracing)
+- Engenharia de Sustentacao
+- Melhoria de Performance
+- Design orientado a dominio (DDD)
+- Testes automatizados (TDD)
 
-```bash
-npm run build
-npm run preview
-```
+---
 
-## Deploy no GitHub Pages
+## Experiencia pratica
 
-1. Ajuste `site` em `astro.config.mjs` para seu usuario.
-2. Ajuste `base` em `astro.config.mjs` para o nome do repositorio.
-3. Faça push para `main`.
-4. No GitHub, habilite Pages com source em GitHub Actions.
+### Sistemas de alta escala
 
-## Motivacao tecnica
+- Sistemas com milhoes de requisicoes diarias
+- APIs criticas com impacto direto no negocio
+- Ambientes com SLA/SLO rigorosos
 
-O primeiro artigo e o repositorio complementar tratam de um incidente em que a causa principal nao era performance bruta, mas amplificacao de carga por retries em cascata. O objetivo e transformar um caso real de operacao em conhecimento reutilizavel para engenharia de plataforma e produto.
+### Performance e otimizacao
 
-## Perfil
+- Reducao de latencia de segundos para milissegundos
+- Identificacao de gargalos reais (nao apenas aparentes)
+- Otimizacao baseada em metricas e contexto
 
-<h2 align="center">Hi 👋! My name is Rodrigo and I'm a Software Engenieer .NET</h2>
+### Confiabilidade e incidentes
 
-###
+- Atuacao direta em incidentes criticos
+- Criacao de runbooks e padronizacao de resposta
+- Reducao de MTTR (tempo de recuperacao)
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?hide_title=false&hide_rank=false&show_icons=true&include_all_commits=true&count_private=true&disable_animations=false&theme=dracula&locale=pt-br&hide_border=false&username=rodrigosantostech" height="150" alt="stats graph"  />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs?locale=en&hide_title=false&layout=compact&card_width=320&langs_count=5&theme=dracula&hide_border=false&username=rodrigosantostech" height="150" alt="languages graph"  />
-</div>
+### Arquitetura
 
-###
+- Microservicos
+- Mensageria (event-driven)
+- Integracoes com sistemas externos
+- Evolucao de sistemas legados
 
+---
 
-###
+## Stack principal
 
-<div align="center">
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" height="30" width="42" alt="csharp logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" height="30" width="42" alt="dot-net logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" height="30" width="42" alt="dotnetcore logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" height="30" width="42" alt="microsoftsqlserver logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-plain.svg" height="30" width="42" alt="typescript logo"  />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="30" width="42" alt="react logo"  />
-</div>
+### Backend
 
-<div align="center">
-  <img src="https://img.shields.io/static/v1?message=Instagram&logo=instagram&label=&color=E4405F&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="instagram logo"  />
-  <a href="https://www.linkedin.com/in/rodrigosilvacs/" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="35" alt="linkedin logo"  />
-  </a>
-</div>
+- C# / .NET (Core, .NET 8)
+- ASP.NET Core (APIs)
+- Entity Framework / Dapper
 
-###
+### Arquitetura e Patterns
 
-<div align="center">
-  <a href="https://open.spotify.com/user/Rodrigo Santos">
-    <img src="https://spotify-recently-played-readme.vercel.app/api?user=rodrigosilva34" alt="Spotify recently played"  />
-  </a>
-</div>
+- Microservices
+- DDD
+- CQRS
+- Clean Architecture
+- SOLID
+
+### Infraestrutura e Cloud
+
+- AWS (SQS, S3, Lambda, ECS, CloudWatch)
+- Docker / Kubernetes
+- CI/CD
+
+### Observabilidade
+
+- OpenTelemetry
+- Prometheus
+- Grafana
+- Datadog / New Relic / Dynatrace
+
+### Banco de dados
+
+- PostgreSQL
+- SQL Server
+- Redis
+
+---
+
+## Filosofia de engenharia
+
+Alguns principios que guiam minhas decisoes:
+
+- **Performance sem resiliencia e ilusao**
+- **Metricas sem contexto enganam**
+- **Sistemas quebram nas integracoes, nao no core**
+- **Retries mal projetados podem derrubar sistemas**
+- **Simplicidade vence complexidade prematura**
+
+---
+
+## Sobre este blog
+
+Este blog nao e sobre tutoriais basicos.
+
+Aqui voce vai encontrar:
+
+- Decisoes arquiteturais reais
+- Falhas de producao e aprendizados
+- Trade-offs tecnicos
+- Problemas que nao aparecem em cursos
+
+O objetivo e simples:
+
+> Compartilhar como sistemas realmente se comportam fora do ambiente ideal.
+
+---
+
+## Projetos
+
+Em breve.
+
+Os projetos aqui nao serao exemplos didaticos, mas sim simulacoes de problemas reais de producao.
+
+---
+
+## Atualmente
+
+- Explorando melhorias em observabilidade e resiliencia
+- Trabalhando com automacao e uso de IA em sistemas produtivos
+- Evoluindo padroes arquiteturais em sistemas distribuidos
+
+---
+
+## Contato
+
+- LinkedIn: [linkedin.com/in/rodrigosilvacs](https://linkedin.com/in/rodrigosilvacs)
+- Email: [rodrigosilva34@hotmail.com](mailto:rodrigosilva34@hotmail.com)
+
+---
+
+## Nota final
+
+Se voce chegou ate aqui, provavelmente tambem ja percebeu:
+
+> O maior desafio nao e escrever codigo.  
+> E construir sistemas que continuam funcionando quando tudo comeca a falhar.
