@@ -48,6 +48,50 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         padding: 1.8rem;
       }
 
+      .profile {
+        display: grid;
+        grid-template-columns: 170px 1fr;
+        gap: 1.2rem;
+        align-items: center;
+        margin: 1rem 0 1.2rem;
+      }
+
+      .avatar {
+        width: 170px;
+        aspect-ratio: 1 / 1;
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        object-fit: cover;
+        box-shadow: 0 12px 26px rgba(4, 13, 25, 0.45);
+      }
+
+      .profile-text {
+        color: #d8e6f8;
+      }
+
+      .label {
+        margin: 0;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.78rem;
+      }
+
+      .name {
+        margin: 0.25rem 0 0.65rem;
+        font-family: "Chakra Petch", sans-serif;
+        font-size: clamp(1.25rem, 3vw, 1.7rem);
+      }
+
+      .linkedin {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
       h1 {
         font-family: "Chakra Petch", sans-serif;
         margin: 0;
@@ -66,12 +110,41 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         text-decoration: none;
         font-weight: 600;
       }
+
+      @media (max-width: 700px) {
+        .profile {
+          grid-template-columns: 1fr;
+          justify-items: center;
+          text-align: center;
+        }
+      }
     </style>
   </head>
   <body>
     <main>
       <section class="shell">
         <h1>About</h1>
+        <div class="profile">
+          <img
+            class="avatar"
+            src={`${basePath}profile-rodrigo.jpg`}
+            alt="Foto de Rodrigo Santos"
+            loading="eager"
+            decoding="async"
+          />
+          <div class="profile-text">
+            <p class="label">Perfil</p>
+            <p class="name">Rodrigo Silva Santos</p>
+            <a
+              class="linkedin"
+              href="https://www.linkedin.com/in/rodrigosilvacs/"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              LinkedIn / rodrigosilvacs
+            </a>
+          </div>
+        </div>
         <p>
           Sou engenheiro de software focado em confiabilidade, arquitetura orientada a domínio e experiência de desenvolvimento.
         </p>
