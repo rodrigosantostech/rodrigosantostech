@@ -1,15 +1,8 @@
 {
-  "name": "rodrigo-santos-tech-blog",
+  "name": "opensquad-project",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
-  },
-  "devDependencies": {
-    "astro": "^5.0.0"
+  "dependencies": {
+    "playwright": "^1.58.2"
   }
 }

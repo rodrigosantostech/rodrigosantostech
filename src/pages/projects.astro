@@ -70,6 +70,16 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         text-decoration: none;
         font-weight: 600;
       }
+
+      .project-link {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+      }
     </style>
   </head>
   <body>
@@ -78,6 +88,10 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         <h1>Projects</h1>
         <p>Projetos que conectam conteúdo técnico com prática em código.</p>
         <ul>
+          <li>
+            <strong>DailyStatus</strong>: SaaS para registro e acompanhamento diário de status de trabalho, facilitando visibilidade e alinhamento de equipes.
+            <a class="project-link" href="https://www.dailystatus.com.br" target="_blank" rel="noreferrer">www.dailystatus.com.br</a>
+          </li>
           <li>
             <strong>production-failure-not-about-performance</strong>: simulação de falha em cascata causada por retry agressivo.
           </li>
