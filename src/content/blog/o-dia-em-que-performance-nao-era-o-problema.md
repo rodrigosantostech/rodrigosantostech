@@ -66,3 +66,9 @@ Passamos a adotar três regras objetivas:
 Falhas graves nem sempre começam em falta de recurso. Muitas vezes elas nascem de decisões locais corretas que, combinadas, criam comportamento sistêmico destrutivo.
 
 Naquele dia, a pergunta certa não era "o que está lento?", e sim "o que está se autoamplificando?". Quando mudamos a pergunta, a solução apareceu.
+
+## Referências técnicas
+
+- [Microsoft Learn - Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): reforça que retry deve ser usado para falhas transitórias, com política calibrada, e alerta que retries agressivos podem degradar ainda mais um serviço sobrecarregado.
+- [Microsoft Learn - Circuit Breaker pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker): sustenta a separação entre retry e circuit breaker e o papel do breaker em evitar falha em cascata e degradação por dependência lenta ou indisponível.
+- [Microsoft Learn - Implement HTTP call retries with exponential backoff with IHttpClientFactory and Polly policies](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly): traz a recomendação prática de jitter em .NET para evitar picos sincronizados de retentativa durante indisponibilidade parcial.

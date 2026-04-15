@@ -99,5 +99,5 @@ Texto mais escaneável e com menor carga cognitiva sem perda de profundidade.
 
 - **Reads from**: squads/csharp-realworld-blogger/output/post-draft.md
 - **Writes to**: squads/csharp-realworld-blogger/output/post-designed.md
-- **Triggers**: pipeline step 04
+- **Triggers**: pipeline step 05
 - **Depends on**: quality-criteria.md, tone-of-voice.md, image-creator skill

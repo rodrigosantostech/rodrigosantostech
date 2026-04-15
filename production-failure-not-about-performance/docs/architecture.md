@@ -1,24 +1,28 @@
-# Architecture Notes
+# Notas de Arquitetura
 
-## Simplified flow
+## Fluxo simplificado
 
-1. API recebe pedido de checkout.
-2. Servico de pedidos chama provedor de pagamento.
-3. Confirmacao do pagamento publica evento em fila.
-4. Consumidor atualiza estado final do pedido.
+1. A API recebe o pedido de checkout.
+2. O serviço de pedidos chama o provedor de pagamento.
+3. A confirmação do pagamento publica um evento na fila.
+4. Um consumidor atualiza o estado final do pedido.
 
-## Failure mode
+## Modo de falha
 
-Quando o provedor externo oscila, retries em camadas multiplicam tentativas para a mesma transacao. Isso gera:
+Quando o provedor externo oscila, retries em camadas multiplicam tentativas para a mesma transação. Isso gera:
 
-- competicao por conexoes,
-- aumento de eventos duplicados,
-- custo elevado de validacao de idempotencia.
+- competição por conexões;
+- aumento de eventos duplicados;
+- custo elevado de validação de idempotência.
 
-## Engineering decision
+## Decisão de engenharia
 
 Trocar throughput bruto por estabilidade controlada:
 
-- reduzir retries,
-- aplicar circuit breaker,
-- priorizar erro explicito sobre timeout indefinido.
+- reduzir retries;
+- aplicar circuit breaker;
+- priorizar erro explícito sobre timeout indefinido.
+
+## Leitura operacional
+
+Este cenário mostra um ponto importante: nem toda degradação começa em CPU alta, memória saturada ou banco lento. Em sistemas distribuídos, o desenho de recuperação pode ser o amplificador principal do incidente.

@@ -1,11 +1,52 @@
 ---
 import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+const posts: CollectionEntry<"blog">[] = (await getCollection("blog")).sort(
+  (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
+    b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 const base = import.meta.env.BASE_URL;
 const basePath = base.endsWith("/") ? base : `${base}/`;
+
+const postVisuals: Record<string, { image: string; alt: string; label: string }> = {
+  "o-dia-em-que-performance-nao-era-o-problema": {
+    image:
+      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
+    alt: "Monitores com dashboards e métricas operacionais em ambiente escuro.",
+    label: "Incidentes"
+  },
+  "o-dia-em-que-o-commit-venceu-o-evento": {
+    image:
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+    alt: "Infraestrutura de servidores e rede representando mensageria e confiabilidade.",
+    label: "Mensageria"
+  },
+  "quando-cache-melhora-o-p95-e-ameaca-a-consistencia": {
+    image:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80",
+    alt: "Pessoa programando em notebook com foco em performance e arquitetura de software.",
+    label: "Consistência"
+  },
+  "ia-nao-e-root-cause-engine-guardrails-para-triagem-tecnica-em-csharp-dotnet": {
+    image:
+      "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1200&q=80",
+    alt: "Estação de trabalho técnica com notebook e telas para observabilidade e IA aplicada.",
+    label: "IA aplicada"
+  }
+};
+
+const defaultVisual = {
+  image:
+    "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+  alt: "Ambiente de trabalho de engenharia de software com foco técnico.",
+  label: "Engenharia"
+};
+
+const postCards = posts.map((post) => ({
+  post,
+  visual: postVisuals[post.slug] ?? defaultVisual
+}));
 ---
 
 <html lang="pt-BR">
@@ -16,206 +57,546 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --bg: #07101d;
-        --bg-soft: #0d1b2f;
-        --card: rgba(10, 24, 42, 0.86);
-        --line: rgba(116, 160, 224, 0.34);
-        --ink: #ecf4ff;
-        --muted: #9eb5d4;
-        --accent: #36d2ff;
-        --accent-2: #ff9f4a;
+        --bg: #07131f;
+        --bg-soft: rgba(10, 24, 38, 0.74);
+        --panel: rgba(8, 20, 32, 0.84);
+        --card: rgba(9, 19, 31, 0.9);
+        --line: rgba(149, 194, 226, 0.22);
+        --ink: #f3f7fb;
+        --muted: #9cb1c3;
+        --accent: #7df9d0;
+        --accent-2: #ffc36b;
+        --shadow: rgba(2, 8, 16, 0.48);
       }
 
-      * { box-sizing: border-box; }
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
 
       body {
         margin: 0;
-        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        font-family: "Source Sans 3", "Segoe UI", sans-serif;
         color: var(--ink);
         background:
-          radial-gradient(circle at 15% 18%, rgba(54, 210, 255, 0.23) 0%, transparent 33%),
-          radial-gradient(circle at 80% 8%, rgba(255, 159, 74, 0.16) 0%, transparent 28%),
-          linear-gradient(120deg, rgba(9, 28, 48, 0.96) 0%, rgba(4, 11, 19, 1) 55%, rgba(7, 16, 29, 1) 100%),
+          radial-gradient(circle at 12% 10%, rgba(125, 249, 208, 0.19) 0%, transparent 25%),
+          radial-gradient(circle at 84% 6%, rgba(255, 195, 107, 0.14) 0%, transparent 20%),
+          linear-gradient(135deg, rgba(6, 16, 28, 0.98) 0%, rgba(3, 10, 18, 1) 58%, rgba(7, 19, 31, 1) 100%),
           var(--bg);
         min-height: 100vh;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 64px 64px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65), transparent 80%);
+      }
+
+      a {
+        color: inherit;
       }
 
       main {
-        width: min(980px, 92vw);
+        width: min(1120px, 92vw);
         margin: 0 auto;
-        padding: 2.8rem 0 4rem;
+        padding: 1.6rem 0 4.5rem;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1.15rem;
+        margin-bottom: 1.3rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(8, 19, 31, 0.72);
+        backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        color: #04121c;
+        background: linear-gradient(135deg, var(--accent), #d8fff5);
+        box-shadow: 0 12px 24px rgba(125, 249, 208, 0.22);
+      }
+
+      .brand-copy {
+        display: grid;
+        gap: 0.05rem;
+      }
+
+      .brand-title,
+      .menu a,
+      .eyebrow,
+      .section-title,
+      .post-label,
+      .cta,
+      .ghost {
+        font-family: "Syne", sans-serif;
+      }
+
+      .brand-title {
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .brand-subtitle {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+      }
+
+      .menu a {
+        text-decoration: none;
+        font-size: 0.9rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 0.55rem 0.9rem;
+        transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .menu a:hover {
+        color: var(--ink);
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+        gap: 1.2rem;
+        align-items: stretch;
+        margin-bottom: 2.2rem;
+      }
+
+      .hero-copy,
+      .hero-panel {
         border: 1px solid var(--line);
-        background: linear-gradient(135deg, rgba(14, 34, 58, 0.96), rgba(7, 17, 30, 0.9));
-        border-radius: 22px;
-        padding: 2rem;
-        position: relative;
+        border-radius: 30px;
+        background: linear-gradient(180deg, rgba(10, 25, 40, 0.88), rgba(7, 18, 30, 0.94));
+        box-shadow: 0 24px 48px var(--shadow);
         overflow: hidden;
       }
 
-      .hero::after {
+      .hero-copy {
+        padding: 2.3rem;
+        position: relative;
+      }
+
+      .hero-copy::after {
         content: "";
         position: absolute;
-        inset: auto -10% -45% auto;
-        width: 360px;
-        height: 360px;
-        background: radial-gradient(circle, rgba(54, 210, 255, 0.2), transparent 65%);
+        width: 320px;
+        height: 320px;
+        right: -90px;
+        top: -110px;
+        background: radial-gradient(circle, rgba(125, 249, 208, 0.18), transparent 68%);
         pointer-events: none;
       }
 
       .eyebrow {
-        display: inline-block;
-        font-family: "Chakra Petch", sans-serif;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        margin: 0 0 1rem;
         font-size: 0.8rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
         color: var(--accent);
-        margin: 0 0 0.8rem;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 2.4rem;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.9;
       }
 
       h1 {
-        font-family: "Chakra Petch", sans-serif;
-        font-size: clamp(2rem, 5vw, 3.8rem);
         margin: 0;
-        line-height: 1.04;
-        max-width: 18ch;
+        font-family: "Syne", sans-serif;
+        font-size: clamp(2.9rem, 6vw, 5.4rem);
+        line-height: 0.94;
+        max-width: 11ch;
       }
 
-      .hero p {
+      .hero-description {
+        max-width: 58ch;
+        margin: 1.15rem 0 0;
+        font-size: 1.12rem;
+        line-height: 1.72;
         color: var(--muted);
-        max-width: 62ch;
-        margin: 0.9rem 0 0;
-        font-size: 1.05rem;
       }
 
-      nav {
+      .hero-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.7rem;
-        margin: 1.5rem 0 0;
+        gap: 0.9rem;
+        margin-top: 1.6rem;
       }
 
-      nav a {
-        color: var(--ink);
+      .cta,
+      .ghost {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         text-decoration: none;
-        font-weight: 600;
         border: 1px solid var(--line);
         border-radius: 999px;
-        padding: 0.55rem 0.9rem;
-        transition: transform 150ms ease, border-color 150ms ease, color 150ms ease;
+        padding: 0.82rem 1.15rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        transition: transform 170ms ease, border-color 170ms ease, background 170ms ease;
       }
 
-      nav a:hover {
-        color: var(--accent);
-        border-color: var(--accent);
+      .cta {
+        color: #04121c;
+        background: linear-gradient(135deg, var(--accent), #d8fff5);
+        box-shadow: 0 16px 30px rgba(125, 249, 208, 0.2);
+      }
+
+      .ghost {
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--ink);
+      }
+
+      .cta:hover,
+      .ghost:hover {
         transform: translateY(-2px);
       }
 
+      .hero-panel {
+        display: grid;
+        grid-template-rows: 1.2fr auto;
+      }
+
+      .hero-image {
+        min-height: 100%;
+        background:
+          linear-gradient(180deg, rgba(7, 17, 28, 0.06), rgba(7, 17, 28, 0.72)),
+          url("https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80") center/cover;
+      }
+
+      .hero-panel-copy {
+        padding: 1.2rem 1.25rem 1.35rem;
+        background: linear-gradient(180deg, rgba(8, 19, 30, 0.3), rgba(8, 19, 30, 0.96));
+      }
+
+      .hero-panel-copy strong {
+        display: block;
+        font-family: "Syne", sans-serif;
+        font-size: 1.1rem;
+        margin-bottom: 0.45rem;
+      }
+
+      .hero-panel-copy p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .section-head {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0 0 1.15rem;
+      }
+
       .section-title {
-        font-family: "Chakra Petch", sans-serif;
-        margin: 2.1rem 0 1rem;
-        font-size: 1.25rem;
-        letter-spacing: 0.06em;
+        margin: 0;
+        font-size: 1.08rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .section-summary {
+        max-width: 48ch;
+        color: var(--muted);
+        margin: 0;
+      }
+
+      .posts-grid {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.1rem;
+      }
+
+      .post-card {
+        background: linear-gradient(180deg, rgba(11, 24, 38, 0.94), rgba(8, 18, 29, 0.98));
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        overflow: hidden;
+        min-height: 100%;
+        box-shadow: 0 22px 44px rgba(2, 8, 16, 0.3);
+        transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+      }
+
+      .post-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(125, 249, 208, 0.42);
+        box-shadow: 0 28px 54px rgba(2, 8, 16, 0.46);
+      }
+
+      .post-link {
+        min-height: 100%;
+        display: grid;
+        grid-template-rows: minmax(210px, 1fr) auto;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .post-media {
+        position: relative;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+      }
+
+      .post-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1.01);
+        transition: transform 220ms ease;
+      }
+
+      .post-card:hover .post-media img {
+        transform: scale(1.06);
+      }
+
+      .post-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(5, 12, 18, 0.02), rgba(5, 12, 18, 0.56));
+      }
+
+      .post-label {
+        position: absolute;
+        left: 1rem;
+        bottom: 0.95rem;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        padding: 0.4rem 0.65rem;
+        border-radius: 999px;
+        background: rgba(4, 18, 28, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
       }
 
-      ul {
-        list-style: none;
-        padding: 0;
+      .post-content {
         display: grid;
-        gap: 1.05rem;
+        gap: 0.7rem;
+        padding: 1rem 1rem 1.15rem;
       }
 
-      li {
-        background: var(--card);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        padding: 1.1rem 1.25rem;
-        backdrop-filter: blur(2px);
-        transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease;
-      }
-
-      li:hover {
-        transform: translateY(-3px);
-        border-color: rgba(54, 210, 255, 0.7);
-        box-shadow: 0 12px 26px rgba(6, 13, 21, 0.42);
-      }
-
-      li a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 1.15rem;
+      .post-content h3 {
+        margin: 0;
+        font-family: "Syne", sans-serif;
+        font-size: 1.22rem;
+        line-height: 1.12;
         font-weight: 700;
-        font-family: "Chakra Petch", sans-serif;
       }
 
       .meta {
-        margin-top: 0.4rem;
         color: var(--muted);
-        font-size: 0.96rem;
+        font-size: 1rem;
+        line-height: 1.55;
       }
 
       .date {
-        margin-top: 0.5rem;
         color: var(--accent-2);
-        font-size: 0.82rem;
+        font-size: 0.78rem;
         text-transform: uppercase;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
       }
 
-      @media (max-width: 640px) {
+      @media (max-width: 900px) {
         .hero {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-panel {
+          grid-template-rows: minmax(280px, 360px) auto;
+        }
+      }
+
+      @media (max-width: 720px) {
+        main {
+          padding-top: 1rem;
+        }
+
+        .topbar {
+          border-radius: 28px;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .hero-copy {
           padding: 1.5rem;
         }
 
-        li a {
-          line-height: 1.3;
+        h1 {
+          max-width: 12ch;
+          font-size: clamp(2.4rem, 13vw, 4rem);
+        }
+
+        .section-head {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .menu {
+          width: 100%;
+        }
+
+        .menu a {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .cta,
+        .ghost {
+          width: 100%;
         }
       }
     </style>
   </head>
   <body>
     <main>
-      <section class="hero">
-        <p class="eyebrow">Rodrigo Santos Tech Journal</p>
-        <h1>Engenharia de software real, sem filtro e sem glamourização.</h1>
-        <p>
-          Histórias de produção, decisões arquiteturais e lições práticas sobre confiabilidade em sistemas distribuídos.
-        </p>
+      <header class="topbar">
+        <a class="brand" href={basePath}>
+          <span class="brand-mark">RS</span>
+          <span class="brand-copy">
+            <span class="brand-title">Rodrigo Santos Tech</span>
+            <span class="brand-subtitle">software, arquitetura e incidentes reais</span>
+          </span>
+        </a>
 
-        <nav>
+        <nav class="menu" aria-label="principal">
           <a href={`${basePath}about/`}>About</a>
-          <a href={`${basePath}now/`}>Now</a>
           <a href={`${basePath}projects/`}>Projects</a>
+          <a href="#posts">Posts</a>
         </nav>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Journal técnico</p>
+          <h1>Arquitetura, produção e decisões que sobrevivem ao mundo real.</h1>
+          <p class="hero-description">
+            Um recorte direto sobre confiabilidade, sistemas distribuídos, .NET e IA aplicada à engenharia sem promessas fáceis e sem estética de vitrine.
+          </p>
+
+          <div class="hero-actions">
+            <a class="cta" href="#posts">Ler posts</a>
+            <a class="ghost" href={`${basePath}projects/`}>Ver projetos</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="destaque editorial">
+          <div class="hero-image"></div>
+          <div class="hero-panel-copy">
+            <strong>Relatos técnicos com contexto de produção</strong>
+            <p>
+              Cada texto parte de trade-offs reais: retry, outbox, cache, observabilidade e o tipo de decisão que muda a operação quando o problema deixa de ser teórico.
+            </p>
+          </div>
+        </aside>
       </section>
 
-      <h2 class="section-title">Posts mais recentes</h2>
+      <section id="posts" aria-labelledby="posts-title">
+        <div class="section-head">
+          <h2 class="section-title" id="posts-title">Posts recentes</h2>
+          <p class="section-summary">
+            Cards mais compactos, leitura rápida e uma imagem por tema para dar contexto visual antes mesmo do clique.
+          </p>
+        </div>
 
-      <ul>
-        {
-          posts.map((post) => (
-            <li>
-              <a href={`${basePath}blog/${post.slug}/`}>{post.data.title}</a>
-              <div class="meta">{post.data.description}</div>
-              <div class="date">
-                {post.data.pubDate.toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric"
-                })}
-              </div>
-            </li>
-          ))
-        }
-      </ul>
+        <ul class="posts-grid">
+          {
+            postCards.map(({ post, visual }) => (
+                <li class="post-card">
+                  <a class="post-link" href={`${basePath}blog/${post.slug}/`}>
+                    <div class="post-media">
+                      <img src={visual.image} alt={visual.alt} loading="lazy" />
+                      <span class="post-label">{visual.label}</span>
+                    </div>
+
+                    <div class="post-content">
+                      <div class="date">
+                        {post.data.pubDate.toLocaleDateString("pt-BR", {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric"
+                        })}
+                      </div>
+                      <h3>{post.data.title}</h3>
+                      <div class="meta">{post.data.description}</div>
+                    </div>
+                  </a>
+                </li>
+              ))
+          }
+        </ul>
+      </section>
     </main>
   </body>
 </html>

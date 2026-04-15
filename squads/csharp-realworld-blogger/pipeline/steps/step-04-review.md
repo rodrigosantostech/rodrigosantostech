@@ -5,7 +5,7 @@ inputFile: squads/csharp-realworld-blogger/output/post-language-reviewed.md
 outputFile: squads/csharp-realworld-blogger/output/post-final.md
 ---
 
-# Step 06: Technical Review
+# Step 07: Technical Review
 
 ## Context Loading
 - squads/csharp-realworld-blogger/output/post-language-reviewed.md

@@ -1,28 +1,31 @@
 # Postmortem - Failure Not About Performance
 
-## Summary
+## Resumo
 
-A indisponibilidade foi causada por amplificacao de tentativas em cadeia apos degradacao intermitente do provedor de pagamento.
+A indisponibilidade foi causada por amplificação de tentativas em cadeia após degradação intermitente do provedor de pagamento.
 
-## What happened
+## O que aconteceu
 
-- O provedor externo retornou erros transitorios.
-- O servico de pedidos aplicou retry.
-- O cliente HTTP tambem aplicou retry em paralelo.
-- A fila de confirmacao recebeu eventos duplicados acima da capacidade.
+- O provedor externo retornou erros transitórios.
+- O serviço de pedidos aplicou retry.
+- O cliente HTTP também aplicou retry em paralelo.
+- A fila de confirmação recebeu eventos duplicados acima da capacidade.
 
-## Why this was not a raw performance issue
+## Por que isso não era um problema bruto de performance
 
-CPU, memoria e latencia de banco estavam estaveis no inicio do incidente. O colapso veio de comportamento emergente: cada falha gerava mais carga que retroalimentava o sistema.
+CPU, memória e latência de banco estavam estáveis no início do incidente. O colapso veio de comportamento emergente: cada falha gerava mais carga, que retroalimentava o sistema.
 
-## Immediate mitigation
+Em outras palavras, o sistema não caiu por falta imediata de recurso. Ele caiu porque a estratégia de recuperação multiplicou o volume de trabalho enquanto a dependência externa continuava instável.
 
-- Retry automatico removido por feature flag.
+## Mitigação imediata
+
+- Retry automático removido por feature flag.
 - Limite de tentativas reduzido.
-- Circuit breaker habilitado para abrir rapido.
+- Circuit breaker habilitado para abrir rápido.
 
-## Long-term actions
+## Ações de longo prazo
 
-- Definir retry budget por operacao.
-- Garantir retry em apenas um nivel da cadeia.
-- Revisar idempotencia com foco em custo sob alta duplicidade.
+- Definir retry budget por operação.
+- Garantir retry em apenas um nível da cadeia.
+- Revisar idempotência com foco em custo sob alta duplicidade.
+- Monitorar taxa de tentativas por transação como sinal operacional primário.

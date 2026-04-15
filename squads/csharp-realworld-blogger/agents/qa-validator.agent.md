@@ -94,5 +94,5 @@ Observação: projeto apto para publicação.
 
 - **Reads from**: squads/csharp-realworld-blogger/output/post-final.md
 - **Writes to**: squads/csharp-realworld-blogger/output/project-checks.md
-- **Triggers**: pipeline step 07
+- **Triggers**: pipeline step 08
 - **Depends on**: ambiente Node configurado e dependências instaladas

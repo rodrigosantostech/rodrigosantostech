@@ -1,34 +1,51 @@
 # production-failure-not-about-performance
 
-Repositorio complementar ao artigo "O dia em que performance nao era o problema - e mesmo assim o sistema caia".
+Repositório complementar ao artigo "O dia em que performance não era o problema - e mesmo assim o sistema caía".
 
-## Proposito
+## Propósito
 
-Demonstrar como um sistema pode entrar em colapso sem saturar CPU ou memoria, apenas por amplificacao de chamadas causada por retry agressivo.
+Demonstrar como um sistema pode entrar em colapso sem saturar CPU ou memória, apenas por amplificação de chamadas causada por retry agressivo em uma dependência externa.
+
+## O que este projeto mostra
+
+O foco aqui não é benchmark sintético nem otimização isolada. O objetivo é tornar visível um modo de falha comum em sistemas distribuídos:
+
+- erro transitório em integração externa;
+- retries em mais de uma camada;
+- multiplicação de trabalho inútil;
+- fila crescendo mais rápido do que a capacidade de drenagem.
 
 ## Estrutura
 
 - `context/`: contexto operacional do incidente.
 - `docs/`: notas de arquitetura e modo de falha.
-- `src/`: simulacao executavel.
-- `postmortem.md`: analise consolidada do incidente.
+- `src/`: simulação executável.
+- `postmortem.md`: análise consolidada do incidente.
 
 ## Como rodar
 
-Pre-requisito: Node.js 18+.
+Pré-requisito: Node.js 18+.
 
 ```bash
 node src/simulation.js
 ```
 
-A saida mostra por segundo:
+A saída mostra, por segundo:
 
-- volume de requisicoes,
-- tentativas totais apos retries,
-- carga da fila,
-- descarte por saturacao,
-- taxas de sucesso/falha.
+- volume de requisições;
+- tentativas totais após retries;
+- carga da fila;
+- descarte por saturação;
+- taxas de sucesso e falha.
 
-## Motivacao tecnica
+## Leitura recomendada
 
-Resiliencia sem governanca de retries pode piorar um incidente. Este repositorio existe para tornar esse comportamento observavel e facilitar discussoes de trade-off entre disponibilidade imediata e estabilidade sistemica.
+Para entender o racional arquitetural por trás da simulação, leia também:
+
+- `context/incident-context.md`
+- `docs/architecture.md`
+- `postmortem.md`
+
+## Motivação técnica
+
+Resiliência sem governança de retries pode piorar um incidente em vez de contê-lo. Este repositório existe para tornar esse comportamento observável e facilitar discussões de trade-off entre disponibilidade imediata e estabilidade sistêmica.

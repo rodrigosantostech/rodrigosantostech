@@ -5,6 +5,7 @@ squad:
   icon: "🧠"
   agents:
     - researcher
+    - reference-researcher
     - writer
     - design-reviewer
     - language-reviewer

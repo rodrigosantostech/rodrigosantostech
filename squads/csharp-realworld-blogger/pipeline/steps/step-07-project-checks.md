@@ -5,7 +5,7 @@ inputFile: squads/csharp-realworld-blogger/output/post-final.md
 outputFile: squads/csharp-realworld-blogger/output/project-checks.md
 ---
 
-# Step 07: Project Checks (Lint and Build)
+# Step 08: Project Checks (Lint and Build)
 
 ## Context Loading
 - squads/csharp-realworld-blogger/output/post-final.md

@@ -84,3 +84,9 @@ O ganho real veio da governança da decisão, não do cache isolado.
 Cache pode ser acelerador ou amplificador de erro. Em API crítica, a decisão arquitetural madura não é "cachear mais", e sim "cachear com contrato de consistência".
 
 Performance sem governança de estado vira risco operacional com aparência de otimização.
+
+## Referências técnicas
+
+- [Microsoft Learn - Overview of caching in ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview): diferencia cache em memória, cache distribuído, output caching e HybridCache, o que ajuda a escolher o mecanismo certo conforme topologia e criticidade.
+- [Microsoft Learn - Cache-Aside pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside): sustenta os pontos sobre expiração, invalidação e risco de staleness, além de explicitar que cache não garante consistência com a fonte primária.
+- [Microsoft Learn - Overview of caching in ASP.NET Core#HybridCache](https://learn.microsoft.com/en-us/aspnet/core/performance/caching/overview#hybridcache): reforça temas práticos como stampede protection e a combinação entre velocidade local e durabilidade distribuída.

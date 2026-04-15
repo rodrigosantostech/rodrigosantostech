@@ -102,5 +102,5 @@ Ajustes recomendados:
 
 - **Reads from**: squads/csharp-realworld-blogger/output/post-language-reviewed.md
 - **Writes to**: squads/csharp-realworld-blogger/output/post-final.md
-- **Triggers**: pipeline step 05
+- **Triggers**: pipeline step 07
 - **Depends on**: critérios de qualidade e tom de voz

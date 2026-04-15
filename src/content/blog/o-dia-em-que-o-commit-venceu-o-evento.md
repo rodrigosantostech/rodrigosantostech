@@ -110,3 +110,9 @@ O principal ganho foi previsibilidade: quando algo falha, agora sabemos **onde**
 A maior mudança não foi tecnológica, foi de postura arquitetural. Saímos do “publicar e torcer” para um fluxo auditável, com recuperação explícita e risco controlado.
 
 Em sistemas distribuídos, confiabilidade não nasce de mais tentativas. Nasce de decisões que tornam falhas visíveis, delimitadas e recuperáveis.
+
+## Referências técnicas
+
+- [Microsoft Learn - Asynchronous message-based communication](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/architect-microservice-container-applications/asynchronous-message-based-communication): descreve consistência eventual com eventos de integração, explicita a necessidade de processamento idempotente e cita o Outbox pattern como abordagem prática para publicar eventos com resiliência.
+- [Microsoft Learn - Competing Consumers pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/competing-consumers): sustenta o uso de consumidores concorrentes, reforça entrega pelo menos uma vez e recomenda idempotência e dead-letter queue para limitar impacto de reprocessamento e poison messages.
+- [Microsoft Learn - Retry pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/retry): reforça que operações não idempotentes exigem cuidado especial antes de qualquer política de retry, o que dialoga diretamente com publicação duplicada e efeitos colaterais em mensageria.

@@ -3,6 +3,7 @@ pipeline:
   steps:
     - steps/step-01-topic-checkpoint.md
     - steps/step-02-research.md
+    - steps/step-02-technical-references.md
     - steps/step-03-draft.md
     - steps/step-04-design-review.md
     - steps/step-04-language-review.md

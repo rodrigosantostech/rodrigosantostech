@@ -98,5 +98,5 @@ A revisão preservou o conteúdo técnico e a estrutura original, atuando apenas
 
 - **Reads from**: squads/csharp-realworld-blogger/output/post-draft.md
 - **Writes to**: squads/csharp-realworld-blogger/output/post-language-reviewed.md
-- **Triggers**: pipeline step 04
+- **Triggers**: pipeline step 06
 - **Depends on**: tom de voz e criterios de qualidade

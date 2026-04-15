@@ -5,7 +5,7 @@ inputFile: squads/csharp-realworld-blogger/output/post-designed.md
 outputFile: squads/csharp-realworld-blogger/output/post-language-reviewed.md
 ---
 
-# Step 05: Language Review (PT-BR)
+# Step 06: Language Review (PT-BR)
 
 ## Context Loading
 - squads/csharp-realworld-blogger/output/post-designed.md

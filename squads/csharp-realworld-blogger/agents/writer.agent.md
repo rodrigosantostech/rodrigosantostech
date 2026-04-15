@@ -99,7 +99,7 @@ Em um fluxo de checkout com múltiplas integrações, o sistema começou a falha
 
 ## Integration
 
-- **Reads from**: squads/csharp-realworld-blogger/output/research-findings.md
+- **Reads from**: squads/csharp-realworld-blogger/output/research-findings.md, squads/csharp-realworld-blogger/output/technical-references.md
 - **Writes to**: squads/csharp-realworld-blogger/output/post-draft.md
-- **Triggers**: pipeline step 03
+- **Triggers**: pipeline step 04
 - **Depends on**: critérios de qualidade do squad

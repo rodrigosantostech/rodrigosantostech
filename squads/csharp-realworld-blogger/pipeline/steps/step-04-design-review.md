@@ -5,7 +5,7 @@ inputFile: squads/csharp-realworld-blogger/output/post-draft.md
 outputFile: squads/csharp-realworld-blogger/output/post-designed.md
 ---
 
-# Step 04: Technical Design Review (Astro)
+# Step 05: Technical Design Review (Astro)
 
 ## Context Loading
 - squads/csharp-realworld-blogger/output/post-draft.md

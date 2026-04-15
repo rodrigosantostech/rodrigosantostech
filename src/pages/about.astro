@@ -40,10 +40,90 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         min-height: 100vh;
       }
 
+      a {
+        color: inherit;
+      }
+
       main {
         width: min(980px, 92vw);
         margin: 0 auto;
         padding: 2.6rem 0 4.2rem;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1.1rem;
+        margin-bottom: 1.2rem;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(8, 19, 26, 0.6);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 16px 32px rgba(3, 12, 18, 0.28);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        width: 2.45rem;
+        height: 2.45rem;
+        display: grid;
+        place-items: center;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #65efe4 0%, #39d4c8 100%);
+        color: #052329;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.15rem;
+        letter-spacing: 0.08em;
+      }
+
+      .brand-copy {
+        display: grid;
+        gap: 0.05rem;
+      }
+
+      .brand-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+      }
+
+      .brand-subtitle {
+        font-size: 0.76rem;
+        color: var(--muted);
+      }
+
+      .menu {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        flex-wrap: wrap;
+      }
+
+      .menu a {
+        text-decoration: none;
+        color: var(--muted);
+        border: 1px solid transparent;
+        border-radius: 999px;
+        padding: 0.5rem 0.85rem;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 0.92rem;
+        letter-spacing: 0.1em;
+        transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+      }
+
+      .menu a:hover,
+      .menu a[aria-current="page"] {
+        color: var(--ink);
+        border-color: var(--line);
+        background: rgba(255, 255, 255, 0.04);
       }
 
       .shell {
@@ -240,6 +320,21 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
       }
 
       @media (max-width: 700px) {
+        .topbar {
+          border-radius: 28px;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .menu {
+          width: 100%;
+        }
+
+        .menu a {
+          flex: 1 1 auto;
+          text-align: center;
+        }
+
         .hero-grid,
         .grid-2,
         .stack {
@@ -292,6 +387,22 @@ const basePath = base.endsWith("/") ? base : `${base}/`;
         </header>
 
         <div class="content">
+            <header class="topbar">
+              <a class="brand" href={basePath}>
+                <span class="brand-mark">RS</span>
+                <span class="brand-copy">
+                  <span class="brand-title">Rodrigo Santos Tech</span>
+                  <span class="brand-subtitle">software, arquitetura e incidentes reais</span>
+                </span>
+              </a>
+
+              <nav class="menu" aria-label="principal">
+                <a href={`${basePath}about/`} aria-current="page">About</a>
+                <a href={`${basePath}projects/`}>Projects</a>
+                <a href={`${basePath}#posts`}>Posts</a>
+              </nav>
+            </header>
+
           <article class="card">
             <h2>Sobre</h2>
             <p>
