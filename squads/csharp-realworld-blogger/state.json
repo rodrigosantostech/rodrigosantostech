@@ -1,7 +1,7 @@
 {
   "squad": "csharp-realworld-blogger",
   "status": "idle",
-  "step": { "current": 6, "total": 6, "label": "Run completed" },
+  "step": { "current": 7, "total": 7, "label": "Run completed" },
   "agents": [
     {
       "id": "researcher",
@@ -37,6 +37,13 @@
       "icon": "🛡️",
       "status": "idle",
       "desk": { "col": 2, "row": 2 }
+    },
+    {
+      "id": "qa-validator",
+      "name": "Quentin Quality",
+      "icon": "✅",
+      "status": "idle",
+      "desk": { "col": 3, "row": 2 }
     }
   ],
   "handoff": null,

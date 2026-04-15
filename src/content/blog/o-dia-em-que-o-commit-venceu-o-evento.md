@@ -1,5 +1,5 @@
 ---
-title: O dia em que o commit venceu o evento: Outbox e idempotência no .NET
+title: "O dia em que o commit venceu o evento: Outbox e idempotência no .NET"
 description: Como reduzimos inconsistência entre banco e mensageria com uma decisão arquitetural pragmática e suporte de IA para triagem operacional.
 pubDate: 2026-04-15
 tags:

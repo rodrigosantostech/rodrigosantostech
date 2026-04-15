@@ -4,3 +4,4 @@ writer,Walter Writeup,✍️,./agents/writer.agent.md
 design-reviewer,Davi Design,🎨,./agents/design-reviewer.agent.md
 language-reviewer,Paula Polimento,📝,./agents/language-reviewer.agent.md
 editor,Elisa Engineering,🛡️,./agents/editor.agent.md
+qa-validator,Quentin Quality,✅,./agents/qa-validator.agent.md

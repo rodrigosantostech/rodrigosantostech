@@ -9,6 +9,7 @@ squad:
     - design-reviewer
     - language-reviewer
     - editor
+    - qa-validator
 
 skills:
   - web_search

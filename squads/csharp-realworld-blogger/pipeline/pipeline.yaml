@@ -7,5 +7,6 @@ pipeline:
     - steps/step-04-design-review.md
     - steps/step-04-language-review.md
     - steps/step-04-review.md
+    - steps/step-07-project-checks.md
   checkpoints:
     - steps/step-01-topic-checkpoint.md

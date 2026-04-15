@@ -1,5 +1,5 @@
 ---
-title: Quando cache melhora o p95 e ameaça a consistência: decisão de arquitetura no .NET
+title: "Quando cache melhora o p95 e ameaça a consistência: decisão de arquitetura no .NET"
 description: Como desenhamos cache seletivo em uma API crítica de pagamentos para reduzir latência sem transformar consistência em aposta.
 pubDate: 2026-04-15
 tags:

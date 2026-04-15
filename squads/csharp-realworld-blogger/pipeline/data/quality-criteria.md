@@ -8,4 +8,6 @@
 - Fluxogramas/diagramas são usados quando o fluxo técnico é complexo (Mermaid ou especificação de imagem).
 - O tom evita clichês de produtividade e promessas absolutas.
 - Revisão obrigatória de ortografia, acentuação, pontuação e fluidez em PT-BR.
+- `npm run lint` deve passar na raiz do projeto.
+- `npm run build` deve passar na raiz do projeto.
 - O frontmatter Astro está válido: title, description, pubDate, tags.
